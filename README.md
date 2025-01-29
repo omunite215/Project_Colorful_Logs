@@ -53,6 +53,9 @@ customLog("warning", "This is a Sample Warning Message");
 ### Compatibility:
 [![My Skills](https://skillicons.dev/icons?i=js,ts)](https://skillicons.dev)
 
+### Want a JavaScript Version ?
+#### [customLog.js](src/customLogs/customLogs.js)
+
 ## :star: Give A Star
 
 You can also give this repository a star to show more people and they can use this repository.
