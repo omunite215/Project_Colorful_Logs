@@ -13,31 +13,42 @@ Just copy and paste this code in your typescript project
 ```bash
 type LogType = "error" | "info" | "log" | "success" | "warning";
 
-type customLogType = (type: LogType, message: string) => void;
+type CustomLogType = (type: LogType, message: string) => void;
 
-  export const customLog: customLogType = (type, message) => {
-  // ANSI color codes
-  const styles: Record<LogType, string> = {
-    error: "\x1b[1m\x1b[37m\x1b[41m", // Bold White text on Red background
-    log: "\x1b[1m\x1b[37m\x1b[47m", // Bold White text on White background
-    success: "\x1b[1m\x1b[37m\x1b[42m", // Bold White text on Green background
-    warning: "\x1b[1m\x1b[30m\x1b[43m", // Bold Black text on Yellow background
-    info: "\x1b[1m\x1b[37m\x1b[46m" // Bold Text with Aqua Blue background
-  };
+// Check if ANSI escape codes are supported
+const isWindowsCmd = process.platform === "win32" && !process.env.TERM;
 
-  const reset = "\x1b[0m"; // Reset styles
+export const customLog: CustomLogType = (type, message) => {
+  // ANSI color codes (only if supported)
+  const styles: Record<LogType, string> = isWindowsCmd
+    ? { error: "", log: "", success: "", warning: "", info: "" } // No colors in Windows CMD
+    : {
+        error: "\x1b[1m\x1b[37m\x1b[41m", // Bold White text on Red background
+        log: "\x1b[1m\x1b[37m\x1b[47m", // Bold White text on White background
+        success: "\x1b[1m\x1b[37m\x1b[42m", // Bold White text on Green background
+        warning: "\x1b[1m\x1b[30m\x1b[43m", // Bold Black text on Yellow background
+        info: "\x1b[1m\x1b[37m\x1b[46m" // Bold Text with Aqua Blue background
+      };
 
-  switch (styles[type]) {
+  const reset = isWindowsCmd ? "" : "\x1b[0m"; // Reset styles (only if supported)
+
+  const formattedMessage = `${styles[type]}${message}${reset}`;
+
+  switch (type) {
     case "error":
-      return console.error(`${styles.error}${message}${reset}`);
+      console.error(formattedMessage);
+      break;
     case "info":
-      return console.info(`${styles.warning}${message}${reset}`);
+      console.info(formattedMessage);
+      break;
     case "warning":
-      return console.warn(`${styles.warning}${message}${reset}`);
+      console.warn(formattedMessage);
+      break;
     default:
-      return console.log(`${styles[type]}${message}${reset}`);
+      console.log(formattedMessage);
   }
 };
+
 ```
 
 ### Here's a Demo
@@ -52,6 +63,10 @@ customLog("warning", "This is a Sample Warning Message");
 
 ### Compatibility:
 [![My Skills](https://skillicons.dev/icons?i=js,ts)](https://skillicons.dev)
+
+- ✅ Mac (Terminal, iTerm, VS Code Terminal, etc.) → Works fine.
+- ✅ Windows (PowerShell, Windows Terminal, VS Code Terminal) → Works fine.
+- ⚠️ Windows (Command Prompt) → ANSI codes may not work correctly. Use PowerShell or install chalk for compatibility.
 
 ### Want a JavaScript Version ?
 #### [customLog.js](src/customLogs/customLogs.js)
