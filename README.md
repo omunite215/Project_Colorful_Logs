@@ -48,7 +48,8 @@ customLog("success", "This is a Sample Success Message");
 customLog("warning", "This is a Sample Warning Message");
 ```
 
-### Compatibility: [![My Skills](https://skillicons.dev/icons?i=js,ts)](https://skillicons.dev)
+### Compatibility:
+[![My Skills](https://skillicons.dev/icons?i=js,ts)](https://skillicons.dev)
 
 ## :star: Give A Star
 
