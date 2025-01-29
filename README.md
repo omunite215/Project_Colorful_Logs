@@ -1,5 +1,7 @@
 # Project_Colorful_Logs
 
+![image](https://github.com/user-attachments/assets/00f90012-be67-4d73-b172-46f55c37f226)
+
 Meaningful Customized Colorful Log Messages for your terminal without needing any External Library
 
 Motivation: When I saw other libraries like colors were just used for making some lines colorful in terminal.
@@ -38,7 +40,7 @@ type customLogType = (type: LogType, message: string) => void;
 };
 ```
 
-Here's a Demo
+### Here's a Demo
 ```bash
 import { customLog } from "path_to_file";
 customLog("error", "This is a Sample Error Message");
@@ -84,5 +86,5 @@ You can also give this repository a star to show more people and they can use th
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/ec1e9924-898b-4e41-853b-fcc226afb56f" alt="Om's Logo Image"/>
+  <img src="https://github.com/user-attachments/assets/c1599499-a256-4900-a3d8-25d20dc7f5ae" alt="Om's Logo Image"/>
 </p>
